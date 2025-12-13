@@ -1,68 +1,16 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+body { font-family: Inter, Arial, sans-serif; margin:0; background:#fafafa; color:#222; }
+.upload-page { padding: 80px 20px; display:flex; justify-content:center; }
+.upload-card { width:700px; padding:36px; background:white; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.08); }
+.upload-card input, .upload-card textarea { display:block; width:100%; padding:12px; margin-bottom:16px; border-radius:8px; border:1px solid #eee; font-family:inherit; }
+.upload-card .primary { width:100%; padding:14px; border-radius:10px; background:#6c63ff; color:white; font-weight:600; border:none; cursor:pointer; }
+.error { color:#b00020; margin-bottom:12px; }
+.result-container { display:flex; gap:24px; padding:28px; }
+.left { flex:1; display:flex; flex-direction:column; gap:16px; }
+.right { width:320px; }
+.box { background:white; padding:18px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
+.resume-text { white-space:pre-wrap; max-height:320px; overflow:auto; font-family:monospace; font-size:13px; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; }
+.chip { background:#8ff2c8; padding:8px 12px; border-radius:20px; font-weight:600; }
+.chip.missing { background:#ffe1b5; color:#000; }
+.score-card { text-align:center; padding:20px }
+.score { font-size:42px; font-weight:800; color:#6c63ff; }

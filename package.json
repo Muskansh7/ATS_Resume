@@ -12,11 +12,18 @@
   "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.5.0",
+    "cors": "^2.8.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "mammoth": "^1.11.0",
     "multer": "^2.0.2",
+    "pdf-parse": "^2.4.5",
     "pg": "^8.16.3",
     "react-router-dom": "^7.10.1",
     "typeorm": "^0.3.28"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

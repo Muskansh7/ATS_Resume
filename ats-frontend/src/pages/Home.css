@@ -1,0 +1,126 @@
+/* Background same as other pages */
+.home-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #5b3dfc, #8f6aff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* HERO SECTION */
+.hero-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+/* HERO CONTENT GLASS CARD */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  padding: 55px 70px;
+  border-radius: 18px;
+  text-align: center;
+  max-width: 850px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+.hero {
+  position: relative;
+  padding: 120px 20px 80px; /* increases top space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero button,
+.get-started-btn {
+  position: relative;
+  z-index: 10; /* ensures button stays on top */
+}
+
+
+/* HEADLINE */
+.hero-title {
+  font-size: 55px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.hero-title span {
+  color: #ffe9ff;
+}
+
+/* SUBTITLE */
+.hero-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #f0e9ff;
+  margin-bottom: 15px;
+}
+
+/* DESCRIPTION */
+.hero-desc {
+  font-size: 18px;
+  color: #eee;
+  margin-bottom: 30px;
+}
+
+/* BUTTON */
+.hero-btn {
+  background: white;
+  color: #5b3dfc;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.hero-btn:hover {
+  background: #f1eaff;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* so it doesn’t block clicks */
+}
+
+
+.get-started-btn {
+  margin-top: 30px;
+  padding: 14px 32px;
+  background: white;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+}
+
+.get-started-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.2);
+}
+
+/* FADE IN ANIMATION */
+.fade-in {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

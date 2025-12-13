@@ -1,42 +1,59 @@
+/* ===== GLOBAL ROOT RESET ===== */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* ===== GLOBAL DEFAULTS ===== */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: "Inter", sans-serif;
+  background: #0d0d0d; /* Dark fallback, replaced by page backgrounds */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== PAGE WRAPPER — SPACING BELOW FIXED NAVBAR ===== */
+.page-wrapper {
+  padding-top: 90px; /* Same as navbar height */
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
+/* ===== UTILITY CLASSES ===== */
 
+/* Reusable card style */
 .card {
   padding: 2em;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
+/* Muted text */
 .read-the-docs {
-  color: #888;
+  color: #ccc;
+  margin-top: 1em;
+  font-size: 14px;
+}
+
+/* Smooth fade animation used across pages */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Prevents horizontal scroll issues across pages */
+* {
+  box-sizing: border-box;
 }
