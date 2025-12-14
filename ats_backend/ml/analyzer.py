@@ -1,6 +1,6 @@
 # ats_backend/ml/analyzer.py
-from .embeddings import get_embeddings, cosine_similarity
-from .skill_extractor import extract_skills
+from ml.embeddings import get_embeddings, cosine_similarity
+from ml.skill_extractor import extract_skills
 import numpy as np
 
 def similarity(text_a: str, text_b: str) -> float:

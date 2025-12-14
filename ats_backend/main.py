@@ -7,15 +7,15 @@ from sqlalchemy.orm import Session
 from PyPDF2 import PdfReader
 
 # DB + auth imports (assuming these exist in your project)
-from .database import Base, engine, get_db
-from .models import User
-from .auth import hash_password, verify_password, create_token
+from database import Base, engine, get_db
+from models import User
+from auth import hash_password, verify_password, create_token
 
 # offline ML
-from .ml.analyzer import analyze_resume
+from ml.analyzer import analyze_resume
 # ats_backend/ml/analyzer.py (top)
-from .ml.skill_extractor import extract_skills
-from .ml.embeddings import get_embeddings, cosine_similarity
+from ml.skill_extractor import extract_skills
+from ml.embeddings import get_embeddings, cosine_similarity
 
 
 # auto-create tables
