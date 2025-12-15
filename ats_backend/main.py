@@ -17,6 +17,16 @@ from ml.analyzer import analyze_resume
 from ml.skill_extractor import extract_skills
 from ml.embeddings import get_embeddings, cosine_similarity
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # later restrict to frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # auto-create tables
 Base.metadata.create_all(bind=engine)

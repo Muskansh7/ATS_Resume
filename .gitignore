@@ -1,9 +1,6 @@
-# Python
+node_modules/
+*.msi
 __pycache__/
-*.pyc
-
-# Database
-users.db
-
-# Env
 .env
+*.pyc
+users.db
