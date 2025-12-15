@@ -1,18 +1,23 @@
+# Core API
 fastapi
 uvicorn[standard]
 
-# Database
+# Database & validation
 sqlalchemy
 pydantic
 
-# Auth / Security
+# Auth & security
 python-jose
 passlib[bcrypt]
+python-dotenv
 
 # File handling
 PyPDF2
 python-multipart
-
-# Utilities
 requests
-python-dotenv
+
+# ===== ML / NLP STACK (IMPORTANT) =====
+sentence-transformers
+torch
+numpy
+scikit-learn
