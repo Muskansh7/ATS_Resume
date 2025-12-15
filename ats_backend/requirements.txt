@@ -1,5 +1,16 @@
 fastapi
 uvicorn[standard]
+
+# Database
 sqlalchemy
 pydantic
+
+# PDF parsing
 PyPDF2
+
+# Forms & uploads (FastAPI commonly needs this)
+python-multipart
+
+# Optional but recommended
+requests
+python-dotenv
