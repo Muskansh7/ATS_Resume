@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
+import { API_BASE_URL } from "../config";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -25,18 +26,20 @@ export default function Signup() {
     setError("");
     setLoading(true);
 
-    // Build FormData to match backend field names
-    const payload = new FormData();
-    payload.append("full_name", form.fullName);
-    payload.append("email", form.email);
-    payload.append("phone", form.phone);
-    payload.append("user_id", form.userId);
-    payload.append("password", form.password);
-
     try {
-      const res = await fetch("http://127.0.0.1:8000/signup", {
+      const formData = new FormData();
+      formData.append("full_name", form.fullName);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+      formData.append("user_id", form.userId);
+      formData.append("password", form.password);
+
+      const res = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
-        body: payload,
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       const data = await res.json();
@@ -47,7 +50,6 @@ export default function Signup() {
         return;
       }
 
-      // Signup successful → redirect to Login page
       navigate("/login");
 
     } catch (err) {
@@ -64,7 +66,6 @@ export default function Signup() {
         <h2>Create Account</h2>
 
         <form className="signup-form" onSubmit={handleSignup}>
-
           <label>Full Name</label>
           <input
             name="fullName"
