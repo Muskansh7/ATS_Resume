@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../components/AuthContext";
+import { API_BASE_URL } from "../config.jsx";
 import "./Login.css";
-import { API_BASE_URL } from "../config";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [userIdOrEmail, setUserIdOrEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,20 +26,26 @@ export default function Login() {
       const res = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
         body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.detail || "Login failed");
+        setError(data.detail || "Invalid login credentials");
         return;
       }
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
+      login();
       navigate("/upload");
+
     } catch (err) {
+      console.error(err);
       setError("Could not connect to server.");
     } finally {
       setLoading(false);
@@ -66,7 +74,7 @@ export default function Login() {
             required
           />
 
-          {error && <p className="error">{error}</p>}
+          {error && <p className="error-text">{error}</p>}
 
           <button disabled={loading}>
             {loading ? "Logging in..." : "Login →"}

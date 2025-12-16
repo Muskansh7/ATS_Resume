@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL } from "../config.jsx";
 
 export default function Signup() {
   const navigate = useNavigate();
