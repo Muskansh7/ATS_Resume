@@ -5,8 +5,6 @@ import { API_BASE_URL } from "../config";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const [form, setForm] = useState({
     fullName: "",
@@ -16,8 +14,12 @@ export default function Signup() {
     password: "",
   });
 
-  const handleChange = (e) =>
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -45,7 +47,9 @@ export default function Signup() {
       }
 
       navigate("/login");
-    } catch {
+
+    } catch (err) {
+      console.error(err);
       setError("Could not connect to server.");
     } finally {
       setLoading(false);

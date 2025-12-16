@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/AuthContext.jsx";
+import { useAuth } from "../components/AuthContext";
 import "./Login.css";
 import { API_BASE_URL } from "../config";
 
@@ -26,13 +26,12 @@ export default function Login() {
       const res = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
         body: payload,
-        headers: { Accept: "application/json" },
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.detail || "Invalid login credentials");
+        setError(data.detail || "Login failed");
         return;
       }
 
@@ -41,6 +40,7 @@ export default function Login() {
 
       login();
       navigate("/upload");
+
     } catch (err) {
       console.error(err);
       setError("Could not connect to server.");
@@ -52,37 +52,33 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2 className="login-title">Welcome Back</h2>
-        <p className="login-subtitle">Login to continue</p>
+        <h2>Welcome Back</h2>
+        <p>Login to continue</p>
 
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="input-group">
-            <label>Email or User ID</label>
-            <input
-              value={userIdOrEmail}
-              onChange={(e) => setUserIdOrEmail(e.target.value)}
-              required
-            />
-          </div>
+        <form onSubmit={handleLogin}>
+          <label>Email or User ID</label>
+          <input
+            value={userIdOrEmail}
+            onChange={(e) => setUserIdOrEmail(e.target.value)}
+            required
+          />
 
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           {error && <p className="error-text">{error}</p>}
 
-          <button type="submit" disabled={loading}>
+          <button disabled={loading}>
             {loading ? "Logging in..." : "Login →"}
           </button>
         </form>
 
-        <p className="signup-text">
+        <p>
           Don’t have an account? <Link to="/signup">Create Account</Link>
         </p>
       </div>
