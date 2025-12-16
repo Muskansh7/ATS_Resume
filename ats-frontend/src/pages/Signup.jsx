@@ -5,6 +5,8 @@ import { API_BASE_URL } from "../config";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [form, setForm] = useState({
     fullName: "",
@@ -14,12 +16,8 @@ export default function Signup() {
     password: "",
   });
 
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -27,33 +25,27 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append("full_name", form.fullName);
-      formData.append("email", form.email);
-      formData.append("phone", form.phone);
-      formData.append("user_id", form.userId);
-      formData.append("password", form.password);
+      const payload = new FormData();
+      payload.append("full_name", form.fullName);
+      payload.append("email", form.email);
+      payload.append("phone", form.phone);
+      payload.append("user_id", form.userId);
+      payload.append("password", form.password);
 
       const res = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+        body: payload,
       });
 
       const data = await res.json();
 
       if (!res.ok) {
         setError(data.detail || "Signup failed");
-        setLoading(false);
         return;
       }
 
       navigate("/login");
-
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError("Could not connect to server.");
     } finally {
       setLoading(false);
@@ -62,60 +54,24 @@ export default function Signup() {
 
   return (
     <div className="signup-wrapper">
-      <div className="signup-card fade-in">
+      <div className="signup-card">
         <h2>Create Account</h2>
 
-        <form className="signup-form" onSubmit={handleSignup}>
-          <label>Full Name</label>
-          <input
-            name="fullName"
-            value={form.fullName}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Phone Number</label>
-          <input
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
-
-          <label>User ID</label>
-          <input
-            name="userId"
-            value={form.userId}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+        <form onSubmit={handleSignup}>
+          <input name="fullName" placeholder="Full Name" onChange={handleChange} required />
+          <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+          <input name="phone" placeholder="Phone" onChange={handleChange} required />
+          <input name="userId" placeholder="User ID" onChange={handleChange} required />
+          <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
 
           {error && <p className="error-text">{error}</p>}
 
           <button disabled={loading}>
-            {loading ? "Creating Account..." : "Create Account →"}
+            {loading ? "Creating..." : "Create Account →"}
           </button>
         </form>
 
-        <p className="switch-text">
+        <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>

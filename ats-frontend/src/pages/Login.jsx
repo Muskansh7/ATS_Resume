@@ -19,37 +19,31 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append("userIdOrEmail", userIdOrEmail);
-      formData.append("password", password);
+      const payload = new FormData();
+      payload.append("userIdOrEmail", userIdOrEmail);
+      payload.append("password", password);
 
       const res = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+        body: payload,
+        headers: { Accept: "application/json" },
       });
 
       const data = await res.json();
 
       if (!res.ok) {
         setError(data.detail || "Invalid login credentials");
-        setLoading(false);
         return;
       }
 
       localStorage.setItem("token", data.token);
-      if (data.user) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-      }
+      localStorage.setItem("user", JSON.stringify(data.user));
 
       login();
       navigate("/upload");
-
     } catch (err) {
       console.error(err);
-      setError("Server error. Please try again.");
+      setError("Could not connect to server.");
     } finally {
       setLoading(false);
     }
@@ -57,9 +51,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <div className="bg-blur-circle circle1"></div>
-      <div className="bg-blur-circle circle2"></div>
-
       <div className="login-box">
         <h2 className="login-title">Welcome Back</h2>
         <p className="login-subtitle">Login to continue</p>
@@ -70,7 +61,6 @@ export default function Login() {
             <input
               value={userIdOrEmail}
               onChange={(e) => setUserIdOrEmail(e.target.value)}
-              placeholder="Enter your email or ID"
               required
             />
           </div>
@@ -81,14 +71,13 @@ export default function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
               required
             />
           </div>
 
           {error && <p className="error-text">{error}</p>}
 
-          <button type="submit" className="login-btn" disabled={loading}>
+          <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login →"}
           </button>
         </form>
