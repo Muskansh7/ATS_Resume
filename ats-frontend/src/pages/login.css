@@ -88,6 +88,46 @@
 .input-group input::placeholder {
   color: #444;
 }
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #5b3dfc, #8f6aff);
+}
+
+.login-box {
+  background: #7b61ff;
+  padding: 40px;
+  width: 360px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error {
+  color: #ffb3b3;
+  margin-top: 8px;
+}
+
 
 /* ===== LOGIN BUTTON ===== */
 .login-btn {

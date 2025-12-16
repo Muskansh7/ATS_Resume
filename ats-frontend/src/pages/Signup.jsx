@@ -17,9 +17,8 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -27,16 +26,16 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      const payload = new FormData();
-      payload.append("full_name", form.fullName);
-      payload.append("email", form.email);
-      payload.append("phone", form.phone);
-      payload.append("user_id", form.userId);
-      payload.append("password", form.password);
+      const fd = new FormData();
+      fd.append("full_name", form.fullName);
+      fd.append("email", form.email);
+      fd.append("phone", form.phone);
+      fd.append("user_id", form.userId);
+      fd.append("password", form.password);
 
       const res = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
-        body: payload,
+        body: fd,
       });
 
       const data = await res.json();
@@ -47,9 +46,7 @@ export default function Signup() {
       }
 
       navigate("/login");
-
-    } catch (err) {
-      console.error(err);
+    } catch {
       setError("Could not connect to server.");
     } finally {
       setLoading(false);
@@ -57,8 +54,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-wrapper">
-      <div className="signup-card">
+    <div className="signup-container">
+      <div className="signup-box">
         <h2>Create Account</h2>
 
         <form onSubmit={handleSignup}>
@@ -68,7 +65,7 @@ export default function Signup() {
           <input name="userId" placeholder="User ID" onChange={handleChange} required />
           <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
 
-          {error && <p className="error-text">{error}</p>}
+          {error && <p className="error">{error}</p>}
 
           <button disabled={loading}>
             {loading ? "Creating..." : "Create Account →"}
