@@ -1,0 +1,22 @@
+:root{
+  --bg:#f7f8fb;
+  --card:#fff;
+  --muted:#666;
+  --accent:#2563eb;
+}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);color:#111;}
+.nav{background:#0b1320;color:#fff;padding:12px 0;box-shadow:0 1px 0 rgba(0,0,0,.06);}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
+.brand{font-weight:700;}
+.links a{color:#dbeafe;margin-left:14px;text-decoration:none;}
+.links a.active{border-bottom:2px solid #fff;padding-bottom:4px;}
+.container{max-width:960px;margin:20px auto;padding:0 16px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:12px;}
+.jobcard, .card{background:var(--card);padding:14px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.03);}
+.jobcard h3{margin:0 0 6px 0;}
+.muted{color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none;}
+.form label{display:block;margin-bottom:8px;}
+.form input[type="text"], .form input[type="email"], .form input[type="file"]{display:block;width:100%;padding:8px;margin-top:6px;border:1px solid #e6e9f0;border-radius:6px;background:#fff;}
+.back{background:transparent;border:none;font-size:1rem;color:var(--accent);cursor:pointer;margin-bottom:12px;}
+.msg{margin-top:10px;color:green;}

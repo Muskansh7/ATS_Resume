@@ -1,0 +1,23 @@
+import React from "react";
+
+const mock = [
+  { id: "c1", name: "Aisha", role: "Frontend", score: 0.89 },
+  { id: "c2", name: "Rohit", role: "ML Eng", score: 0.82 }
+];
+
+export default function Candidates() {
+  return (
+    <div>
+      <h1>Top Candidates</h1>
+      <div className="grid">
+        {mock.map(c => (
+          <div key={c.id} className="card">
+            <h3>{c.name}</h3>
+            <p className="muted">{c.role}</p>
+            <p>Matching score: {(c.score*100).toFixed(0)}%</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
