@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Nav.jsx";
 import "./Signup.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 export default function Signup() {
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ export default function Signup() {
     payload.append("password", form.password);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/signup", {
+      const res = await fetch(`${API_BASE}/signup`, {
         method: "POST",
         body: payload,
       });
@@ -49,7 +51,7 @@ export default function Signup() {
       navigate("/login");
     } catch (err) {
       console.error(err);
-      setError("Could not connect to server.");
+      setError("Server unreachable. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -57,10 +59,8 @@ export default function Signup() {
 
   return (
     <>
-      {/* SAME HEADER AS LANDING & LOGIN */}
       <Navbar />
 
-      {/* OFFSET FOR FIXED NAVBAR */}
       <div className="signup-page-wrapper">
         <div className="signup-wrapper">
           <div className="signup-card fade-in">

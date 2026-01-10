@@ -8,7 +8,7 @@ from ats_backend.database import Base, engine, get_db
 from ats_backend.models import User
 from ats_backend.auth import hash_password, verify_password, create_token
 from ats_backend.ml.analyzer import analyze_resume
-from ats_backend.ml.file_reader import extract_text   # ✅ FIXED
+from ats_backend.ml.file_reader import extract_text
 
 
 # ===================== APP SETUP =====================
@@ -17,12 +17,11 @@ app = FastAPI(title="ATS Backend")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ✅ allow deployed frontend
+    allow_origins=["*"],  # OK for demo / deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 Base.metadata.create_all(bind=engine)
 
@@ -116,7 +115,11 @@ async def analyze(
 ):
     resume_text = extract_text(resume)
 
-    if not resume_text.strip():
-        raise HTTPException(status_code=400, detail="Could not extract text")
+    if not resume_text or not resume_text.strip():
+        raise HTTPException(
+            status_code=400,
+            detail="Could not extract text from resume"
+        )
 
-    return await analyze_resume(resume_text, job_title, job_description)
+    # ✅ DO NOT await (function is sync)
+    return analyze_resume(resume_text, job_title, job_description)
