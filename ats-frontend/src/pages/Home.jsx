@@ -1,15 +1,11 @@
-import React from "react";
 import "./Home.css";
 
 export default function Home() {
   return (
     <div className="home-wrapper">
-
       <div className="hero-section">
-
         {/* GLASS BACKGROUND BEHIND TEXT */}
         <div className="hero-content glass-effect fade-in">
-
           <h1 className="hero-title">
             Transform Your Resume with <span>AI</span>
           </h1>
@@ -26,7 +22,6 @@ export default function Home() {
           <button className="hero-btn">
             Get Started →
           </button>
-
         </div>
       </div>
     </div>

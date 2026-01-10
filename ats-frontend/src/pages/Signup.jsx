@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Nav.jsx";
 import "./Signup.css";
 
 export default function Signup() {
@@ -25,7 +26,6 @@ export default function Signup() {
     setError("");
     setLoading(true);
 
-    // Build FormData to match backend field names
     const payload = new FormData();
     payload.append("full_name", form.fullName);
     payload.append("email", form.email);
@@ -43,13 +43,10 @@ export default function Signup() {
 
       if (!res.ok) {
         setError(data.detail || "Signup failed");
-        setLoading(false);
         return;
       }
 
-      // Signup successful → redirect to Login page
       navigate("/login");
-
     } catch (err) {
       console.error(err);
       setError("Could not connect to server.");
@@ -59,65 +56,72 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-wrapper">
-      <div className="signup-card fade-in">
-        <h2>Create Account</h2>
+    <>
+      {/* SAME HEADER AS LANDING & LOGIN */}
+      <Navbar />
 
-        <form className="signup-form" onSubmit={handleSignup}>
+      {/* OFFSET FOR FIXED NAVBAR */}
+      <div className="signup-page-wrapper">
+        <div className="signup-wrapper">
+          <div className="signup-card fade-in">
+            <h2>Create Account</h2>
 
-          <label>Full Name</label>
-          <input
-            name="fullName"
-            value={form.fullName}
-            onChange={handleChange}
-            required
-          />
+            <form className="signup-form" onSubmit={handleSignup}>
+              <label>Full Name</label>
+              <input
+                name="fullName"
+                value={form.fullName}
+                onChange={handleChange}
+                required
+              />
 
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+              <label>Email</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
 
-          <label>Phone Number</label>
-          <input
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
+              <label>Phone Number</label>
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                required
+              />
 
-          <label>User ID</label>
-          <input
-            name="userId"
-            value={form.userId}
-            onChange={handleChange}
-            required
-          />
+              <label>User ID</label>
+              <input
+                name="userId"
+                value={form.userId}
+                onChange={handleChange}
+                required
+              />
 
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+              <label>Password</label>
+              <input
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
 
-          {error && <p className="error-text">{error}</p>}
+              {error && <p className="error-text">{error}</p>}
 
-          <button disabled={loading}>
-            {loading ? "Creating Account..." : "Create Account →"}
-          </button>
-        </form>
+              <button disabled={loading}>
+                {loading ? "Creating Account..." : "Create Account →"}
+              </button>
+            </form>
 
-        <p className="switch-text">
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
+            <p className="switch-text">
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

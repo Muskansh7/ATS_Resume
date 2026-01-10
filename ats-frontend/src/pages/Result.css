@@ -1,165 +1,95 @@
-/* ===========================
-   GLOBAL VARIABLES
-=========================== */
+/* ================= ROOT COLORS ================= */
 :root {
-  --purple-1: #5b3dfc;
-  --purple-2: #8f6aff;
-  --card-bg: rgba(255, 255, 255, 0.22);
-  --white: #ffffff;
-  --nav-h: 72px;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --text-dark: #0f172a;
+  --text-muted: #475569;
+  --border-light: #e5e7eb;
+
+  /* HOME PAGE ACCENT */
+  --accent-brown: #8b5a2b;
+  --accent-brown-light: #f3e8dd;
 }
 
-/* ===========================
-   RESET
-=========================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Inter, system-ui, sans-serif;
-  overflow-x: hidden;
-}
-
-/* ===========================
-   NAVBAR (UNCHANGED)
-=========================== */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-  background: linear-gradient(180deg, #0d0a2c, #1a144a);
-  padding: 18px 40px;
-}
-
-/* ===========================
-   PAGE BACKGROUND
-=========================== */
+/* ================= PAGE ================= */
 .result-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
-  padding-top: var(--nav-h);
-  padding-bottom: 8px;
-}
-/* ===========================
-   BOX SPACING FIX
-=========================== */
-
-/* uniform vertical spacing between cards */
-.card {
-  margin-bottom: 18px;
+  background: var(--bg-main);
 }
 
-/* prevent last card extra gap */
-.card:last-child {
-  margin-bottom: 0;
+.result-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
 }
 
-/* left column stacking */
-.left-col > .card {
-  margin-bottom: 18px;
-}
-
-/* right column stacking */
-.right-col > .card {
-  margin-bottom: 18px;
-}
-
-/* weaknesses + suggestions row spacing */
-.split-grid {
-  margin-top: 10px;
-}
-
-/* ===========================
-   HEADER (REFERENCE STYLE)
-/* ===========================
-   MAIN LAYOUT (KEY PART)
-=========================== */
-/* ===========================
-   HEADER (COMPACT & CLEAN)
-=========================== */
+/* ================= HEADER ================= */
 .result-header {
   text-align: center;
-  color: white;
-  padding: 28px 16px 24px;   /* 🔥 reduced height */
+  margin-bottom: 56px;
 }
 
 .result-header h1 {
-  font-size: 36px;          /* 🔥 smaller but strong */
+  font-size: 36px;
   font-weight: 800;
+  color: var(--text-dark);
   margin-bottom: 6px;
-  letter-spacing: -0.5px;
 }
 
 .result-header p {
-  font-size: 15px;          /* 🔥 slimmer subtitle */
-  opacity: 0.85;
-  line-height: 1.4;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.result-header {
-  padding: 22px 16px 18px;
+  font-size: 15px;
+  color: var(--text-muted);
 }
 
-.result-header h1 {
-  font-size: 34px;
-}
-
-
+/* ================= GRID ================= */
 .result-main {
-  width: 100%;
-  max-width: 100%;     /* 🔥 remove container constraint */
-  margin: 12px 0;
-  padding: 0 24px;     /* minimal breathing room */
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
-  gap: 16px;
-  align-items: start;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 32px;
 }
 
-/* ===========================
-   CARDS
-=========================== */
+/* ================= COLUMNS ================= */
+.left-col,
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ================= CARD ================= */
 .card {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
   border-radius: 16px;
-  padding: 22px 24px;       /* 🔥 comfortable inner space */
-  color: white;
-}
-.card {
-  max-width: 100%;
-  padding: 16px 18px;
+  padding: 26px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
+/* Card Headings – MATCH HOME */
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-brown);
+  margin-bottom: 14px;
+}
+
+/* ================= RESUME TEXT ================= */
 .resume-text {
-  max-width: 900px;    /* 🔥 text readable */
-}
-
-
-/* ===========================
-   RESUME PREVIEW BOX
-=========================== */
-.resume-text {
-  background: rgba(255, 255, 255, 0.28);
-  border-radius: 12px;
-  padding: 18px;
-  height: 52vh;             /* 🔥 reference height */
+  min-height: 420px;
+  max-height: 520px;
   overflow-y: auto;
+  background: #fafafa;
+  padding: 18px;
+  border-radius: 12px;
   font-family: monospace;
   font-size: 14px;
-  line-height: 1.45;
-  color: white;
+  line-height: 1.6;
+  color: #111827;
+  white-space: pre-wrap;
+  border: 1px solid var(--border-light);
 }
 
-/* ===========================
-   SKILLS / CHIPS
-=========================== */
+/* ================= SKILLS ================= */
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -167,228 +97,94 @@ body {
 }
 
 .chip {
-  padding: 8px 16px;
+  padding: 8px 14px;
+  background: var(--accent-brown-light);
+  color: var(--accent-brown);
   border-radius: 999px;
-  font-weight: 700;
-  font-size: 13px;
-  background: #d8ffe6;
-  color: #093d23;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .chip.missing {
-  background: #ffe5e5;
-  color: #4a1b1b;
+  background: #fee2e2;
+  color: #991b1b;
 }
 
-/* ===========================
-   WEAKNESS / SUGGESTIONS
-=========================== */
-.split-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ================= ATS CARD ================= */
+.ats-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 18px;
 }
 
-.muted-list {
-  margin-left: 20px;
-  color: #f3f3f3;
+/* ATS SVG */
+.ats-card svg {
+  width: 170px;
+  height: 170px;
 }
 
-.muted-list li {
-  margin-bottom: 8px;
-  line-height: 1.45;
+/* ATS CENTER TEXT */
+.ats-score {
+  font-size: 28px;
+  font-weight: 800;
+  fill: var(--text-dark);
 }
 
-/* ===========================
-   RIGHT COLUMN
-=========================== */
-.right-col {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-/* ===========================
-   ANALYZE BUTTON FIX
-=========================== */
-
-/* ===========================
-   ANALYZE SECTION FIX
-=========================== */
-
-.analyze-card {
-  padding: 18px;
-}
-
-/* wrapper for both actions */
-.analyze-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* common button styles */
-.analyze-actions a,
-.analyze-actions button {
-  width: 100%;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-weight: 700;
+.ats-label {
   font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  box-sizing: border-box;
+  fill: var(--text-muted);
 }
 
-/* primary */
-.analyze-actions a {
-  background: #ffffff;
-  color: #5b3dfc;
-  border: none;
-}
-
-/* secondary */
-.analyze-actions button {
-  background: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-}
-
-
-
-/* ATS SCORE CARD */
-.ats-card {
-  text-align: center;
-}
-
-/* ===========================
-   SCORE BARS
-=========================== */
+/* ================= MINI BARS ================= */
 .mini-bar {
-  margin-top: 16px;
+  width: 100%;
 }
 
 .mini-head {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 14px;
+  color: var(--text-muted);
   margin-bottom: 6px;
 }
 
 .mini-track {
-  height: 10px;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
+  height: 8px;
+  background: var(--border-light);
+  border-radius: 999px;
   overflow: hidden;
 }
 
 .mini-fill {
-  height: 10px;
-  background: white;
-  border-radius: 10px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--accent-brown),
+    #c08457
+  );
+  border-radius: 999px;
 }
 
-/* ===========================
-   BUTTONS
-=========================== */
-.btn-primary,
-.btn-outline {
-  width: 100%;
-  padding: 12px 0;
-  border-radius: 10px;
-  font-weight: 700;
-  text-align: center;
+/* ================= LISTS ================= */
+.muted-list {
+  padding-left: 18px;
 }
 
-.btn-primary {
-  background: white;
-  color: var(--purple-1);
+.muted-list li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: #374151;
 }
 
-.btn-outline {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
   .result-main {
     grid-template-columns: 1fr;
-    padding: 0 16px;
+  }
+
+  .resume-text {
+    min-height: 300px;
+    max-height: 400px;
   }
 }
-/* ===========================
-   ANALYZE CARD – HARD FIX
-=========================== */
-
-.analyze-card {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* kill any absolute / weird positioning */
-.analyze-card a,
-.analyze-card button {
-  position: static !important;
-  transform: none !important;
-}
-/* ===========================
-   ACTIONS CARD FIX (FINAL)
-=========================== */
-
-.actions-card {
-  padding: 18px;
-}
-
-.actions-card h4 {
-  margin-bottom: 12px;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-/* stack buttons cleanly */
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* normalize both Link (<a>) and button */
-.actions .btn-primary,
-.actions .btn-outline {
-  width: 100%;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;                 /* 🔥 prevents text shift */
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-  box-sizing: border-box;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-/* PRIMARY */
-.actions .btn-primary {
-  background: #ffffff;
-  color: #5b3dfc;
-  border: none;
-}
-
-/* SECONDARY */
-.actions .btn-outline {
-  background: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-}
-

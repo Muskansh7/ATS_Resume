@@ -1,8 +1,6 @@
-import React from "react";
 import "../Landing.css"; // Reuse your global styles for consistency
 
 export default function JobMatch() {
-  // Example static data — Replace with real backend response later
   const matchScore = 87;
   const matchedSkills = ["React", "JavaScript", "Node.js", "REST API"];
   const missingSkills = ["GraphQL", "Docker", "AWS"];
@@ -14,7 +12,6 @@ export default function JobMatch() {
 
   return (
     <div className="result-wrapper">
-
       <div className="result-card">
         <h1 className="result-title">Job Match Score</h1>
 
@@ -53,7 +50,10 @@ export default function JobMatch() {
           </ul>
         </div>
 
-        <button className="back-btn" onClick={() => (window.location.href = "/upload")}>
+        <button
+          className="back-btn"
+          onClick={() => (window.location.href = "/upload")}
+        >
           Upload Another Resume →
         </button>
       </div>
