@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./Result.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+
 /* ------------------ helpers ------------------ */
 const clamp = (v, lo = 0, hi = 100) =>
   Math.max(lo, Math.min(hi, Number(v) || 0));

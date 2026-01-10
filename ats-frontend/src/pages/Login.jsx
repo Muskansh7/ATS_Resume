@@ -4,6 +4,9 @@ import { useAuth } from "../components/AuthContext.jsx";
 import Navbar from "../components/Nav.jsx";
 import "./Login.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
