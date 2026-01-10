@@ -6,7 +6,6 @@ import "./Login.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -14,20 +13,24 @@ export default function Login() {
   const [userIdOrEmail, setUserIdOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const payload = new FormData();
       payload.append("userIdOrEmail", userIdOrEmail);
       payload.append("password", password);
 
-      const res = await fetch("http://127.0.0.1:8000/login", {
+      const res = await fetch(`${API_BASE}/login`, {
         method: "POST",
         body: payload,
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       const data = await res.json();
@@ -37,6 +40,7 @@ export default function Login() {
         return;
       }
 
+      // Save auth data
       localStorage.setItem("token", data.token);
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -47,15 +51,15 @@ export default function Login() {
     } catch (err) {
       console.error(err);
       setError("Server error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-      {/* SAME HEADER AS LANDING PAGE */}
       <Navbar />
 
-      {/* PAGE CONTENT OFFSET FOR FIXED NAVBAR */}
       <div className="login-page-wrapper">
         <div className="login-container">
           <div className="login-box">
@@ -86,8 +90,8 @@ export default function Login() {
 
               {error && <p className="error-text">{error}</p>}
 
-              <button type="submit" className="login-btn">
-                Login →
+              <button type="submit" className="login-btn" disabled={loading}>
+                {loading ? "Logging in..." : "Login →"}
               </button>
             </form>
 

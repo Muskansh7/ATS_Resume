@@ -28,17 +28,20 @@ export default function Signup() {
     setError("");
     setLoading(true);
 
-    const payload = new FormData();
-    payload.append("full_name", form.fullName);
-    payload.append("email", form.email);
-    payload.append("phone", form.phone);
-    payload.append("user_id", form.userId);
-    payload.append("password", form.password);
-
     try {
+      const payload = new FormData();
+      payload.append("full_name", form.fullName);
+      payload.append("email", form.email);
+      payload.append("phone", form.phone);
+      payload.append("user_id", form.userId);
+      payload.append("password", form.password);
+
       const res = await fetch(`${API_BASE}/signup`, {
         method: "POST",
         body: payload,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
       const data = await res.json();
@@ -48,6 +51,7 @@ export default function Signup() {
         return;
       }
 
+      // redirect after success
       navigate("/login");
     } catch (err) {
       console.error(err);

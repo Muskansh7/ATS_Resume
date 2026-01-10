@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./Result.css";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
-
-
 /* ------------------ helpers ------------------ */
 const clamp = (v, lo = 0, hi = 100) =>
   Math.max(lo, Math.min(hi, Number(v) || 0));
@@ -112,7 +109,7 @@ export default function Result() {
             <div className="card">
               <h3>Resume Preview</h3>
               <pre className="resume-text">
-                {data.resumeText && data.resumeText.trim().length > 0
+                {data.resumeText && data.resumeText.trim()
                   ? data.resumeText
                   : "No resume text available"}
               </pre>
@@ -151,9 +148,7 @@ export default function Result() {
               <h3>Weaknesses</h3>
               <ul className="muted-list">
                 {Array.isArray(data.weaknesses) && data.weaknesses.length > 0 ? (
-                  data.weaknesses.map((w, i) => (
-                    <li key={i}>{w}</li>
-                  ))
+                  data.weaknesses.map((w, i) => <li key={i}>{w}</li>)
                 ) : (
                   <li>No major weaknesses detected</li>
                 )}
@@ -165,9 +160,7 @@ export default function Result() {
               <h3>Suggestions</h3>
               <ul className="muted-list">
                 {Array.isArray(data.suggestions) && data.suggestions.length > 0 ? (
-                  data.suggestions.map((s, i) => (
-                    <li key={i}>{s}</li>
-                  ))
+                  data.suggestions.map((s, i) => <li key={i}>{s}</li>)
                 ) : (
                   <li>Your resume is well-structured. Minor improvements only.</li>
                 )}
